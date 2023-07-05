@@ -204,8 +204,8 @@ const Header = () => {
               onSubmit={formik.handleSubmit}>
 
               <label htmlFor="search">
-                <p className='text-3xl'>Happy Shopping with </p>
-                <p className='text-6xl font-bold text-red-500'>Logo</p>
+                <p className='text-3xl lg:text-5xl xl:text-6xl'>Happy Shopping with </p>
+                <p className='text-6xl lg:text-7xl xl:text-9xl font-bold text-red-500'>Logo</p>
 
               </label>
               <div className='max-w-lg  xl:w-96 lg:w-80 md:w-72 pt-9 flex'>
@@ -246,7 +246,7 @@ const Header = () => {
           </div>
           <div className='h-96 w-auto z-0 lg:block flex items-center'>
             <img
-              className='object-cover scale-150 '
+              className='object-cover scale-150 xl:-mt-[60px] '
               src={process.env.PUBLIC_URL + '/assets/shopping-bag-stock-photography-woman-shopping-girl-shopping-0de7bc67f751c0173f69ea3d123c0efa.png'} alt="" />
           </div>
         </div>
