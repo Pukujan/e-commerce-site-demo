@@ -3,6 +3,7 @@ import { useGetAllProductsQuery } from '../Features/storeApi'
 import ViewProducts from '../components/ViewProducts'
 import Search from '../components/Search'
 import SearchResults from './SearchResults'
+import Sidebar from '../components/Sidebar'
 
 const Home = () => {
   const { isLoading, isError, error, data } = useGetAllProductsQuery()
@@ -10,7 +11,11 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div className='flex'>
+
+      <Sidebar
+        data={data}
+      />
       <ViewProducts
         data={data}
         isLoading={isLoading}
