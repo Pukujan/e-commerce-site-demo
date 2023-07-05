@@ -27,7 +27,7 @@ body::-webkit-scrollbar {
 
 
 body::-webkit-scrollbar-track {
-  background-color: rgba(24, 24, 24, 0.2);
+  background-color: rgba(24, 24, 24, 0.8);
 }
 
 
