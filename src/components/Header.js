@@ -98,7 +98,7 @@ const Header = () => {
 
       {/* small navbar OPEN */}
       {isOpen && (
-        <div className='flex flex-col space-y-5 m-5  md:hidden'>
+        <div className='flex flex-col space-y-5 m-5  text-center   md:hidden'>
           {navs.map(nav => (
             <NavLink
               to={nav.path}
@@ -138,13 +138,13 @@ const Header = () => {
       )}
 
       {/* hero banner for small screen */}
-      <div className='bg-yellow-50 bg-contain bg-no-repeat bg-right
-      py-9 flex  justify-center md:hidden'>
+      <div className='bg-yellow-50 bg-contain bg-no-repeat text-center bg-right
+     pt-12   flex  justify-center md:hidden'>
 
         <div>
-          {/* search bar  big screen */}
+          {/* search bar  small screen */}
           <form
-            className='justify-center items-center  w-full '
+            className='justify-center items-center  py-2 w-full '
             onSubmit={formik.handleSubmit}>
 
             <label htmlFor="search">
@@ -152,7 +152,7 @@ const Header = () => {
               <p className='text-6xl font-bold text-red-500'>Logo</p>
 
             </label>
-            <div className='max-w-lg  xl:w-96 lg:w-80 md:w-72 pt-9 flex'>
+            <div className='max-w-lg  xl:w-96 lg:w-80 md:w-72 pt-8   flex'>
               <input
                 type="text"
                 name='search'
@@ -170,6 +170,7 @@ const Header = () => {
                 <HiSearch size={30} className='text-white' />
               </button>
 
+
             </div>
 
           </form>
@@ -182,10 +183,11 @@ const Header = () => {
               <p>
                 Latest trends in Fashion.
               </p>
-              <p className='text-slate-500 flex'>with Free Shipping available*
+              <p className='text-slate-500 flex justify-center py-2 '>with Free Shipping available*
               </p>
             </div>
           </div>
+
         </div>
       </div>
 
