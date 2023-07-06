@@ -1,22 +1,18 @@
-import React, { useState } from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { IoMenu } from 'react-icons/io5'
-import { RxCross2 } from 'react-icons/rx'
+import React, { useContext, useEffect, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { IoMenu } from 'react-icons/io5';
+import { RxCross2 } from 'react-icons/rx';
 import { useFormik } from 'formik';
-import { HiSearch } from "react-icons/hi";
+import { HiSearch } from 'react-icons/hi';
+import { SearchContext } from '../contexts/SearchContext';
 import SearchResults from '../pages/SearchResults';
+import ViewProducts from './ViewProducts';
 
-const Header = () => {
-
-  const [isOpen, setIsOpen] = React.useState(false);
-
+const Header = ({ data }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const { filteredData, setFilteredData } = useContext(SearchContext);
 
-  const [isScrolled, setIsScrolled] = React.useState(false);
-
-
-
-  // formikj for search 
   const nav = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -24,38 +20,38 @@ const Header = () => {
     },
     onSubmit: (val, { resetForm }) => {
       setSearchValue(val.search);
-      nav(`/search/${val.search}`);
+      nav(`/searchResults/${val.search}`);
       resetForm();
-    }
+    },
   });
 
-
+  useEffect(() => {
+    const filtered = data?.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [searchValue, data, setFilteredData]);
 
   const navs = [
     {
-      name: 'Popular',
-      path: '/movie/popular'
+      name: 'Home',
+      path: '/products/',
     },
     {
-      name: 'Popular1',
-      path: '/movie/popular1'
+      name: 'Go to Cart',
+      path: '/cart/',
     },
-    {
-      name: 'Popular2',
-      path: '/movie/popular2'
-    }
-  ]
+  ];
 
   const toggle = () => setIsOpen(!isOpen);
   const location = useLocation();
 
-
   return (
     <div>
-      {/* LOGO with menu toggle on small screen and full on big screen*/}
+      {/* OnlineStore with menu toggle on small screen and full on big screen*/}
       <div className='p-5 flex md:scale-100 scale-125  md:justify-between items-baseline md:items-center md:gap-6 gap-0 justify-center mx-10 '>
         <div>
-          <NavLink to='/' className='text-4xl font-bold text-red-600 duration-300 hover:duration-300 hover:text-black'>Logo</NavLink>
+          <NavLink to='/' className='text-4xl font-bold text-red-600 duration-300 hover:duration-300 hover:text-black'>OnlineStore</NavLink>
         </div>
 
 
@@ -149,7 +145,7 @@ const Header = () => {
 
             <label htmlFor="search">
               <p className='text-3xl'>Happy Shopping with </p>
-              <p className='text-6xl font-bold text-red-500'>Logo</p>
+              <p className='text-6xl font-bold text-red-600'>OnlineStore</p>
 
             </label>
             <div className='max-w-lg  xl:w-96 lg:w-80 md:w-72 pt-8   flex'>
@@ -205,7 +201,7 @@ const Header = () => {
 
               <label htmlFor="search">
                 <p className='text-3xl lg:text-5xl xl:text-6xl'>Happy Shopping with </p>
-                <p className='text-6xl lg:text-7xl xl:text-9xl font-bold text-red-500'>Logo</p>
+                <p className='text-4xl lg:text-6xl xl:text-8xl font-bold text-red-600'>OnlineStore</p>
 
               </label>
               <div className='max-w-lg  xl:w-96 lg:w-80 md:w-72 pt-9 flex'>
@@ -250,18 +246,13 @@ const Header = () => {
               src={process.env.PUBLIC_URL + '/assets/shopping-bag-stock-photography-woman-shopping-girl-shopping-0de7bc67f751c0173f69ea3d123c0efa.png'} alt="" />
           </div>
         </div>
-        <div>
-          {location.pathname === '/search' && (
-            <SearchResults search={searchValue} />
-          )}
 
-
-        </div>
 
 
 
 
       </div >
+
     </div >
 
 

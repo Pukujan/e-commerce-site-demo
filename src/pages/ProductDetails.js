@@ -1,10 +1,11 @@
 import { Rating } from '@mui/material';
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const Detail = () => {
   const { state } = useLocation();
   const [isImageOpen, setIsImageOpen] = useState(false);
+  const { title } = useParams();
 
   const handleOpenImage = () => {
     setIsImageOpen(true);
@@ -39,7 +40,7 @@ const Detail = () => {
             </div>
             <div className='py-1'>
               <p className='capitalize pb-2'>{state.category}</p>
-              <p className='overflow-y-scroll h-64'>{state.description}</p>
+              <p className='overflow-y-scroll line-clamp-6'>{state.description}</p>
 
             </div>
           </div>
@@ -60,10 +61,11 @@ const Detail = () => {
 
           <div className='grid grid-cols-2 pt-2 w-full'>
             <p className='font-bold text-xl '>Price: </p>
-            <p className='text-2xl font-bold'>{state.price}</p>
+            <p className='text-2xl font-bold'>${state.price}</p>
           </div>
-          <div className='flex gap-56 items-center'>
-            <span className='font-bold text-xl py-1'>Ratings: </span>            <Rating name="read-only" value={state.rating.rate} readOnly />
+          <div className='flex gap-20 lg:gap-56 items-center'>
+            <span className='font-bold text-xl py-1'>Rating: </span>
+            <Rating name="read-only" value={state.rating.rate} readOnly />
           </div>
           <div className='grid grid-cols-2 w-full'>
             <span className='font-bold text-xl '>Rated by:</span> <span>{state.rating.count} users</span>
